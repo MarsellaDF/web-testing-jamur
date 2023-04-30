@@ -20,16 +20,19 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('testing', function () {
+    return view('testing.index');
+});
+
 
 Route::middleware('auth')->group(function () {
     Route::get('dashboard', [DashboardController::class,'index'])->name('dashboard');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
     Route::get('/monitoring', [MonitoringController::class,'index'])->name('monitoring');
-
     Route::post('/get-first-click', [MonitoringController::class, 'showMonitor'])->name('getmonitor');
-
     Route::get('datapakar', function () {
         return view('datapakar');
     });
@@ -38,9 +41,6 @@ Route::middleware('auth')->group(function () {
         return view('datauser');
     });
 
-    Route::get('testing', function () {
-        return view('testing.index');
-    });
 });
 
 require __DIR__.'/auth.php';
