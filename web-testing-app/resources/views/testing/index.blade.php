@@ -3,7 +3,6 @@
         <h4 class="text-center my-4">Silahkan Testing Website ini</h4>
         <div class="embed-responsive embed-responsive-16by9 my-5 p-2">
 
-            {{--  <iframe class="embed-responsive-item" src="http://mitrajamurbondowoso.com/" allowfullscreen  --}}
             <h6>Daftar Skenario</h6>
             <div id="timer">00:00:00</div>
 
@@ -35,7 +34,7 @@
                 {{--  <div id="webvw">
 
                 </div>  --}}
-                <iframe class="embed-responsive-item" id="webview" src="http://192.168.0.104:8080" {{--  <iframe class="embed-responsive-item" id="webview" src="http://mitrajamurbondowoso.com/"  --}}
+                <iframe class="embed-responsive-item" id="webview" src="http://192.168.1.119:8000/" {{--  <iframe class="embed-responsive-item" id="webview" src="http://mitrajamurbondowoso.com/"  --}}
                     style="width: 1090px; height: 900px; display:none;"></iframe>
             </center>
         </div>
