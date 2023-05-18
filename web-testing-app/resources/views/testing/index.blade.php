@@ -159,10 +159,17 @@
                         console.log("ini menu produk");
                     }
 
+                    document.getElementById("webview").style.width = coordinates.scrollHorizontal + "px";
+                    document.getElementById("webview").style.height = coordinates.scrollVertical + "px";
+
                     // Melakukan aksi yang diinginkan berdasarkan koordinat yang diperoleh
                     console.log("Koordinat X: " + xCoordinate);
                     console.log("Koordinat Y: " + yCoordinate);
                     console.log("Content: " + coordinates.body);
+                    console.log("screen width: " + coordinates.screenWidth);
+                    console.log("screen height: " + coordinates.screenHeight);
+                    console.log("scroll horizontal: " + coordinates.scrollHorizontal);
+                    console.log("scroll vertical: " + coordinates.scrollVertical);
 
                     // Contoh aksi lain yang dapat dilakukan:
                     // - Mengubah tampilan elemen di dalam elemen induk berdasarkan koordinat
