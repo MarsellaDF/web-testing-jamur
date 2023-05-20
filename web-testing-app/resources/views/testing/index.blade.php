@@ -110,18 +110,16 @@
                 {{--  <div id="webvw">
 
                 </div>  --}}
-                <iframe class="embed-responsive-item" id="webview" src="http://192.168.100.52:8000/" {{--  <iframe class="embed-responsive-item" id="webview" src="http://mitrajamurbondowoso.com/"  --}}
-                    style="width: 1090px; height: 900px; display:none;"></iframe>
+                <div>Timer Halaman : <h5 id="timerPage"></h5>
+                    <div>Halaman Dashboard : <h6 id="timerDashboard"></h6>
+                    </div>
+                    <iframe class="embed-responsive-item" id="webview" src="http://192.168.1.6:8080/"
+                        {{--  <iframe class="embed-responsive-item" id="webview" src="http://mitrajamurbondowoso.com/"  --}} style="width: 1090px; height: 900px; display:none;"></iframe>
             </center>
         </div>
     @endsection
     @push('js')
         <script>
-            $('#bologna-list a').on('click', function(e) {
-                e.preventDefault()
-                $(this).tab('show')
-            });
-
             var x = document.getElementById("webview");
 
             function handleClick(event) {
@@ -154,6 +152,7 @@
                     var coordinates = event.data;
                     var xCoordinate = coordinates.x;
                     var yCoordinate = coordinates.y;
+                    var menu;
 
                     if (xCoordinate >= 700 && xCoordinate <= 720 && yCoordinate >= 60 && yCoordinate <= 70) {
                         console.log("ini menu produk");
@@ -170,6 +169,36 @@
                     console.log("screen height: " + coordinates.screenHeight);
                     console.log("scroll horizontal: " + coordinates.scrollHorizontal);
                     console.log("scroll vertical: " + coordinates.scrollVertical);
+
+                    if (coordinates.body == '/') {
+                        menu = 1;
+                        timerTimePage(false, menu, false);
+                    } else if (coordinates.body == '/produk') {
+                        menu = 2;
+                        timerTimePage(false, 1, true);
+                    } else if (coordinates.body == '/gallery') {
+                        menu = 3;
+                    }
+
+                    $.ajaxSetup({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        }
+                    });
+                    $.ajax({
+                        type: 'POST',
+                        url: "{{ route('test.post') }}",
+                        data: {
+                            id_menu: menu,
+                            sumbu_x: xCoordinate,
+                            sumbu_y: yCoordinate,
+                        },
+                        success: function(data) {
+                            console.log(data);
+                        }
+                    });
+
+                    console.log("selesai");
 
                     // Contoh aksi lain yang dapat dilakukan:
                     // - Mengubah tampilan elemen di dalam elemen induk berdasarkan koordinat
@@ -226,6 +255,45 @@
                 } else {
                     x.style.display = "none";
                 }
+            }
+
+            function timerTimePage(reset, page, stop) {
+                var seconds = 0;
+                var minutes = 0;
+                var hours = 0;
+
+                if (reset) {
+                    window.clearInterval(tm);
+                    seconds = 0;
+                    minutes = 0;
+                    hours = 0;
+                    sec = "00";
+                    min = "00";
+                    hr = "00";
+                } else {
+                    function timer() {
+                        seconds++;
+                        if (seconds == 60) {
+                            seconds = 0;
+                            minutes++;
+                        }
+                        if (minutes == 60) {
+                            minutes = 0;
+                            hours++;
+                        }
+                        var sec = seconds < 10 ? "0" + seconds : seconds;
+                        var min = minutes < 10 ? "0" + minutes : minutes;
+                        var hr = hours < 10 ? "0" + hours : hours;
+                        document.getElementById("timerPage").innerHTML = hr + ":" + min + ":" + sec;
+                        if (stop && page == 1) {
+                            document.getElementById("timerDashboard").innerHTML = hr + ":" + min + ":" + sec;
+                        }
+
+                    }
+                    tm = window.setInterval(timer, 1000);
+                    // setInterval(timer, 1000);
+                }
+
             }
 
             function timerTime(reset, skenario) {
