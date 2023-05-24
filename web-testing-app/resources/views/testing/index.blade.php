@@ -110,10 +110,43 @@
                 {{--  <div id="webvw">
 
                 </div>  --}}
+                <table class="table table-bordered">
+                    <thead>
+                        <tr colspan="3">
+                            Timer
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Timer Beranda</td>
+                            <td>Timer Produk</td>
+                            <td>Timer Galeri</td>
+                            <td>Timer Tentang</td>
+                            <td>Timer Kontak</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div id="timerBeranda">00:00:00</div>
+                            </td>
+                            <td>
+                                <div id="timerProduk">00:00:00</div>
+                            </td>
+                            <td>
+                                <div id="timerGaleri">00:00:00</div>
+                            </td>
+                            <td>
+                                <div id="timerTentang">00:00:00</div>
+                            </td>
+                            <td>
+                                <div id="timerKontak">00:00:00</div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
                 <div>Timer Halaman : <h5 id="timerPage"></h5>
                     <div>Halaman Dashboard : <h6 id="timerDashboard"></h6>
                     </div>
-                    <iframe class="embed-responsive-item" id="webview" src="http://192.168.1.6:8080/"
+                    <iframe class="embed-responsive-item" id="webview" src="http://192.168.100.111:8000"
                         {{--  <iframe class="embed-responsive-item" id="webview" src="http://mitrajamurbondowoso.com/"  --}} style="width: 1090px; height: 900px; display:none;"></iframe>
             </center>
         </div>
@@ -141,6 +174,19 @@
             // Mendapatkan referensi ke elemen iframe
             var iframe = document.getElementById("webview");
 
+            const timerB = document.getElementById('timerBeranda');
+            const timerP = document.getElementById('timerProduk');
+            const timerG = document.getElementById('timerGaleri');
+            const timerT = document.getElementById('timerProduk');
+            const timerK = document.getElementById('timerKontak');
+
+            let pageBeranda = 0;
+            let pageProduk = 0;
+            let pageGaleri = 0;
+            let pageTentang = 0;
+            let pageKontak = 0;
+            let saveBeranda = 0;
+
             // Menambahkan event listener untuk menerima pesan dari iframe
             window.addEventListener("message", receiveMessage, false);
 
@@ -152,7 +198,7 @@
                     var coordinates = event.data;
                     var xCoordinate = coordinates.x;
                     var yCoordinate = coordinates.y;
-                    var menu;
+                    var menu = 4;
 
                     if (xCoordinate >= 700 && xCoordinate <= 720 && yCoordinate >= 60 && yCoordinate <= 70) {
                         console.log("ini menu produk");
@@ -169,13 +215,19 @@
                     console.log("screen height: " + coordinates.screenHeight);
                     console.log("scroll horizontal: " + coordinates.scrollHorizontal);
                     console.log("scroll vertical: " + coordinates.scrollVertical);
+                    console.log("scroll seconds: " + coordinates.timeseconds);
 
                     if (coordinates.body == '/') {
                         menu = 1;
-                        timerTimePage(false, menu, false);
+                        pageBeranda = coordinates.timeseconds;
+                        timerB.innerHTML = pageBeranda;
+                        //timerTimePage(false, menu, false);
                     } else if (coordinates.body == '/produk') {
+                        saveBeranda = saveBeranda + pageBeranda;
                         menu = 2;
-                        timerTimePage(false, 1, true);
+
+                        console.log(saveBeranda);
+                        //timerTimePage(false, 1, true);
                     } else if (coordinates.body == '/gallery') {
                         menu = 3;
                     }
@@ -187,7 +239,7 @@
                     });
                     $.ajax({
                         type: 'POST',
-                        url: "{{ route('test.post') }}",
+                        url: "{{ route('testFirstClick.post') }}",
                         data: {
                             id_menu: menu,
                             sumbu_x: xCoordinate,

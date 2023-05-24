@@ -2,12 +2,42 @@
 
     @section('content')
         <h4 class="text-center my-4">Hasil Testing</h4>
-        <div class="embed-responsive embed-responsive-16by9 my-5 p-2" id="heatmap"
-            style="position: relative; height: 3620px; width: 1321px;">
-            <div class="">
-                <img class="embed-responsive-item" src="/assets/img/Beranda2.png" allowfullscreen
-                    style="width: 1321px; height: 3620px;"></img>
-            </div>
+        <center>
+            <table class="table table-bordered" style="width: 600px; text-align: center; ">
+                <thead>
+                    <tr>
+                        <th colspan="5">
+                            Menu
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <button onclick="changeIframeSrc('')" class="btn btn-light">Beranda</button>
+                        </td>
+                        <td>
+                            <button onclick="changeIframeSrc('produk')" class="btn btn-light">Produk</button>
+                        </td>
+                        <td>
+                            <button onclick="changeIframeSrc('gallery')" class="btn btn-light">Galeri</button>
+                        </td>
+                        <td>
+                            <button onclick="changeIframeSrc('tentang')" class="btn btn-light">Tentang</button>
+                        </td>
+                        <td>
+                            <button onclick="changeIframeSrc('kontak')" class="btn btn-light">Kontak</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </center>
+        <div class="embed-responsive embed-responsive-16by9 my-5 p-2" id="heatmap">
+            {{--  style="position: relative; height: 3620px; width: 1321px;">  --}}
+            <iframe class="embed-responsive-item" id="webview" src="http://192.168.100.111:8000"
+                style="width: 1073px; height: 4403px;"></iframe>
+            {{--  <img class="embed-responsive-item" src="/assets/img/Beranda2.png" allowfullscreen
+                    style="width: 1321px; height: 3620px;"></img>  --}}
         </div>
         @push('js')
             <script src="https://cdnjs.cloudflare.com/ajax/libs/heatmap.js/2.0.0/heatmap.min.js"
@@ -15,21 +45,32 @@
                 crossorigin="anonymous" referrerpolicy="no-referrer"></script>
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
             <script>
+                function changeIframeSrc(type) {
+                    // Get reference to the iframe element
+                    var iframe = document.getElementById('webview');
+                    // Change the src attribute of the iframe
+                    console.log("cek");
+
+                    iframe.src = 'http://192.168.100.111:8000/'+type;
+                }
+            </script>
+            <script>
                 var data_sumbu_x = [];
                 var data_sumbu_y = [];
+                // Get reference to the iframe element
+                $(document).ready(getData());
 
-                $(document).ready(function() {
-                    console.log("hallo");
+                function getData() {
                     $.ajaxSetup({
                         headers: {
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                         }
                     });
-                    console.log("hallosss");
                     $.ajax({
                         type: 'POST',
                         url: "{{ route('getmonitor') }}",
                         dataType: 'json',
+                        data: {},
                         success: function(res) {
                             console.log("akuuuu");
                             console.log("dataku >> " + res['success']);
@@ -84,10 +125,7 @@
                             console.log("errorrku");
                         }
                     });
-                });
-
-                // now generate some random data
-            </script>
+                }
             </script>
         @endpush
     @endsection

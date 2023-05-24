@@ -26,8 +26,8 @@ Route::get('testing', function () {
 });
 
 
+Route::post('test-first-click', [FirstClickController::class, 'save'])->name('testFirstClick.post');
 Route::middleware('auth')->group(function () {
-    Route::post('first-click', [FirstClickController::class, 'save'])->name('test.post');
     Route::get('dashboard', [DashboardController::class,'index'])->name('dashboard');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
