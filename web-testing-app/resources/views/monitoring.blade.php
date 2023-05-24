@@ -34,9 +34,11 @@
         </center>
         <div class="embed-responsive embed-responsive-16by9 my-5 p-2" id="heatmap">
             {{--  style="position: relative; height: 3620px; width: 1321px;">  --}}
+
             <iframe class="embed-responsive-item" id="webview" src="http://192.168.100.111:8000"
                 style="width:1073px; height:4403px;">
             </iframe>
+
             {{--  <img class="embed-responsive-item" src="/assets/img/Beranda2.png" allowfullscreen
                     style="width: 1321px; height: 3620px;"></img>  --}}
         </div>
