@@ -9,21 +9,21 @@
             <center>
                 <ul class="list-group">
                     <li class="list-group-item d-flex justify-content-between align-items-center" id="skenario1">
-                        1. Lakukan pemesanaan suatu produk jamur! <H6 id="timeSkenario1" style="display:none;"></H6>
+                        1. Lakukan pemesanan produk jamur tiram! <H6 id="timeSkenario1" style="display:none;"></H6>
                         <span class="badge badge-primary badge-pill"><a class="btn btn-sm btn-primary"
                                 href="javascript:showInframe(1);" id="btnSkenario1">Mulai</a></span>
                     </li>
                     <span id="skenario2">
                         <li class="list-group-item d-flex justify-content-between align-items-center">
-                            2. Lakukan pencarian mengenai halaman informasi lengkap mitra jamur (kontak owner) <H6
-                                id="timeSkenario2" style="display:none;"></H6>
+                            2. Lakukan pencarian halaman informasi lengkap dari Mitra Jamur Bondowoso (Kontak
+                            Owner) <H6 id="timeSkenario2" style="display:none;"></H6>
                             <span class="badge badge-primary badge-pill"><a class="btn btn-sm btn-primary"
                                     href="javascript:showInframe(2);" id="btnSkenario2">Mulai</a></span>
                         </li>
                     </span>
                     <span id="skenario3">
                         <li class="list-group-item d-flex justify-content-between align-items-center">
-                            3. Lakukan kritik dan saran untuk produk mitra jamur <H6 id="timeSkenario3"
+                            3. Lakukan kritik dan saran terkait Mitra Jamur Bondowoso <H6 id="timeSkenario3"
                                 style="display:none;"></H6>
                             <span class="badge badge-primary badge-pill"><a class="btn btn-sm btn-primary"
                                     href="javascript:showInframe(3);" id="btnSkenario3">Mulai</a></span>
@@ -146,7 +146,7 @@
                 <div>Timer Halaman : <h5 id="timerPage"></h5>
                     <div>Halaman Dashboard : <h6 id="timerDashboard"></h6>
                     </div>
-                    <iframe class="embed-responsive-item" id="webview" src="http://192.168.100.111:8000"
+                    <iframe class="embed-responsive-item" id="webview" src="http://192.168.0.112:8000/"
                         {{--  <iframe class="embed-responsive-item" id="webview" src="http://mitrajamurbondowoso.com/"  --}} style="width: 1090px; height: 900px; display:none;"></iframe>
             </center>
         </div>
