@@ -35,7 +35,8 @@
         <div class="embed-responsive embed-responsive-16by9 my-5 p-2" id="heatmap">
             {{--  style="position: relative; height: 3620px; width: 1321px;">  --}}
             <iframe class="embed-responsive-item" id="webview" src="http://192.168.100.111:8000"
-                style="width: 1073px; height: 4403px;"></iframe>
+                style="width:1073px; height:4403px;">
+            </iframe>
             {{--  <img class="embed-responsive-item" src="/assets/img/Beranda2.png" allowfullscreen
                     style="width: 1321px; height: 3620px;"></img>  --}}
         </div>
@@ -45,22 +46,70 @@
                 crossorigin="anonymous" referrerpolicy="no-referrer"></script>
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
             <script>
+                let data_sumbu_x = [];
+                let data_sumbu_y = [];
+                let points = [];
+                let max = 0;
+                let data = {};
+                // Get reference to the iframe element
+                $(document).ready(getData(1));
+
+                // minimal heatmap instance configuration
+                var heatmapInstance = h337.create({
+                    // only container is required, the rest will be defaults
+                    container: document.getElementById('heatmap')
+                });
+
                 function changeIframeSrc(type) {
                     // Get reference to the iframe element
                     var iframe = document.getElementById('webview');
+                    iframe.style.width = '1073px';
+                    iframe.style.height = '4403px';
                     // Change the src attribute of the iframe
                     console.log("cek");
 
-                    iframe.src = 'http://192.168.100.111:8000/'+type;
-                }
-            </script>
-            <script>
-                var data_sumbu_x = [];
-                var data_sumbu_y = [];
-                // Get reference to the iframe element
-                $(document).ready(getData());
+                    iframe.src = 'http://192.168.100.111:8000/' + type;
+                    data_sumbu_x = [];
+                    data_sumbu_y = [];
+                    points = [];
+                    max = 0;
+                    data = {};
 
-                function getData() {
+                    switch (type) {
+                        case "":
+                            getData(1);
+                            iframe.style.width = '1073px';
+                            iframe.style.height = '4403px';
+                            break;
+                        case "produk":
+                            getData(2);
+                            console.log("change size iframe");
+                            iframe.style.width = '1057px';
+                            iframe.style.height = '1307px';
+                            break;
+                        case "gallery":
+                            getData(3);
+                            iframe.style.width = '1073px';
+                            iframe.style.height = '4403px';
+                            break;
+                        case "tentang":
+                            getData(4);
+                            iframe.style.width = '1040px';
+                            iframe.style.height = '1586px';
+                            break;
+                        case "kontak":
+                            getData(5);
+                            iframe.style.width = '1040px';
+                            iframe.style.height = '1586px';
+                            break;
+                        default:
+                            // code block
+                    }
+                }
+
+                function getData(menu) {
+                    //heatmapInstance.setData(data);
+                    console.log("cek ceke cekk");
                     $.ajaxSetup({
                         headers: {
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -70,11 +119,16 @@
                         type: 'POST',
                         url: "{{ route('getmonitor') }}",
                         dataType: 'json',
-                        data: {},
+                        data: {
+                            menu: menu,
+                        },
                         success: function(res) {
-                            console.log("akuuuu");
-                            console.log("dataku >> " + res['success']);
-                            console.log("dataku >> " + res['data'][1].ip);
+                            data_sumbu_x = [];
+                            data_sumbu_y = [];
+                            points = [];
+                            max = 0;
+                            data = {};
+
                             console.log("dataku >> " + res.data.length);
                             console.log(res);
                             data_sumbu_y.splice();
@@ -88,21 +142,11 @@
                             console.log("hasil data1");
                             console.log('datain1' + data_sumbu_x.length);
 
-                            var points = [];
-                            var max = 0;
-                            // minimal heatmap instance configuration
-                            var heatmapInstance = h337.create({
-                                // only container is required, the rest will be defaults
-                                container: document.getElementById('heatmap')
-                            });
-
-                            console.log(data_sumbu_x.length);
-
                             for (var i = 0; i < data_sumbu_x.length; i++) {
                                 var val = 60;
                                 console.log(val);
                                 max = Math.max(max, val);
-                                var point = {
+                                point = {
                                     x: data_sumbu_x[i],
                                     y: data_sumbu_y[i],
                                     value: val
@@ -110,7 +154,7 @@
                                 points.push(point);
                             }
                             // heatmap data format
-                            var data = {
+                            data = {
                                 max: max,
                                 data: points
                             };

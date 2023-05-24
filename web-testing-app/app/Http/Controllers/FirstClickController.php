@@ -14,6 +14,9 @@ class FirstClickController extends Controller
         $new->id_menu = $request->get('id_menu');
         $new->sumbu_x = $request->get('sumbu_x');
         $new->sumbu_y = $request->get('sumbu_y');
+        $new->id_skenario = $request->get('id_skenario');
+        $new->duration = $request->get('duration');
+        $new->id_user = $request->get('id_user');
         $new->save();
 
         return response()->json(['succes' => 'Ini pada test berhasil menambahkan data']);

@@ -5,7 +5,6 @@
 
             <h6>Daftar Skenario</h6>
             <div id="timer">00:00:00</div>
-
             <center>
                 <ul class="list-group">
                     <li class="list-group-item d-flex justify-content-between align-items-center" id="skenario1">
@@ -143,11 +142,11 @@
                         </tr>
                     </tbody>
                 </table>
-                <div>Timer Halaman : <h5 id="timerPage"></h5>
+                {{--  <div>Timer Halaman : <h5 id="timerPage"></h5>
                     <div>Halaman Dashboard : <h6 id="timerDashboard"></h6>
-                    </div>
-                    <iframe class="embed-responsive-item" id="webview" src="http://192.168.100.111:8000"
-                        {{--  <iframe class="embed-responsive-item" id="webview" src="http://mitrajamurbondowoso.com/"  --}} style="width: 1090px; height: 900px; display:none;"></iframe>
+                    </div>  --}}
+                <iframe class="embed-responsive-item" id="webview" src="http://192.168.100.111:8000" {{--  <iframe class="embed-responsive-item" id="webview" src="http://mitrajamurbondowoso.com/"  --}}
+                    style="width: 1090px; height: 900px; display:none;"></iframe>
             </center>
         </div>
     @endsection
@@ -177,7 +176,7 @@
             const timerB = document.getElementById('timerBeranda');
             const timerP = document.getElementById('timerProduk');
             const timerG = document.getElementById('timerGaleri');
-            const timerT = document.getElementById('timerProduk');
+            const timerT = document.getElementById('timerTentang');
             const timerK = document.getElementById('timerKontak');
 
             let pageBeranda = 0;
@@ -186,6 +185,13 @@
             let pageTentang = 0;
             let pageKontak = 0;
             let saveBeranda = 0;
+            let saveProduk = 0;
+            let saveGaleri = 0;
+            let saveTentang = 0;
+            let saveKontak = 0;
+            let timerSave = 0;
+            let skenarioSave = 1;
+            let idUser = {{ Auth::user()->id }};
 
             // Menambahkan event listener untuk menerima pesan dari iframe
             window.addEventListener("message", receiveMessage, false);
@@ -221,15 +227,36 @@
                         menu = 1;
                         pageBeranda = coordinates.timeseconds;
                         timerB.innerHTML = pageBeranda;
-                        //timerTimePage(false, menu, false);
+                        timerSave = pageBeranda;
+                        stopTimer(coordinates.body);
                     } else if (coordinates.body == '/produk') {
-                        saveBeranda = saveBeranda + pageBeranda;
+                        stopTimer(coordinates.body);
+                        pageProduk = coordinates.timeseconds;
+                        timerP.innerHTML = pageProduk;
+                        timerSave = pageProduk;
                         menu = 2;
-
-                        console.log(saveBeranda);
-                        //timerTimePage(false, 1, true);
                     } else if (coordinates.body == '/gallery') {
+                        stopTimer(coordinates.body);
+                        pageGaleri = coordinates.timeseconds;
+                        timerG.innerHTML = pageGaleri;
+                        timerSave = pageGaleri;
                         menu = 3;
+                    } else if (coordinates.body == '/tentang') {
+                        stopTimer(coordinates.body);
+                        pageTentang = coordinates.timeseconds;
+                        timerT.innerHTML = pageTentang;
+                        timerSave = pageTentang;
+                        menu = 4;
+                    } else if (coordinates.body == '/kontak') {
+                        stopTimer(coordinates.body);
+                        pageKontak = coordinates.timeseconds;
+                        timerK.innerHTML = pageKontak;
+                        timerSave = pageKontak;
+                        menu = 5;
+                    } else {
+                        stopTimer(coordinates.body);
+                        timerSave = 0;
+                        menu = 6;
                     }
 
                     $.ajaxSetup({
@@ -244,6 +271,9 @@
                             id_menu: menu,
                             sumbu_x: xCoordinate,
                             sumbu_y: yCoordinate,
+                            duration: timerSave,
+                            id_skenario: skenarioSave,
+                            id_user: idUser,
                         },
                         success: function(data) {
                             console.log(data);
@@ -260,6 +290,44 @@
                 }
             }
 
+            function stopTimer(uri) {
+                switch (uri) {
+                    case "/":
+                        saveProduk = saveProduk + pageProduk;
+                        saveGaleri = saveGaleri + pageGaleri;
+                        saveTentang = saveTentang + pageTentang;
+                        saveKontak = saveKontak + pageKontak;
+                        break;
+                    case "/produk":
+                        saveBeranda = saveBeranda + pageBeranda;
+                        saveGaleri = saveGaleri + pageGaleri;
+                        saveTentang = saveTentang + pageTentang;
+                        saveKontak = saveKontak + pageKontak;
+                        break;
+                    case "/gallery":
+                        saveBeranda = saveBeranda + pageBeranda;
+                        saveProduk = saveProduk + pageProduk;
+                        saveTentang = saveTentang + pageTentang;
+                        saveKontak = saveKontak + pageKontak;
+                        break;
+                    case "/tentang":
+                        saveBeranda = saveBeranda + pageBeranda;
+                        saveProduk = saveProduk + pageProduk;
+                        saveGaleri = saveGaleri + pageGaleri;
+                        saveKontak = saveKontak + pageKontak;
+                        break;
+                    case "/kontak":
+                        saveBeranda = saveBeranda + pageBeranda;
+                        saveProduk = saveProduk + pageProduk;
+                        saveGaleri = saveGaleri + pageGaleri;
+                        saveTentang = saveTentang + pageTentang;
+                        break;
+                    default:
+                        // code block
+                }
+
+            }
+
             function showInframe(skenario) {
                 var x = document.getElementById("webview");
                 var x1 = document.getElementById("skenario1");
@@ -271,6 +339,7 @@
 
 
                 if (skenario == 1) {
+                    skenarioSave = 1;
                     console.log("pertama" + btnS1.innerHTML);
                     if (btnS1.innerHTML == "Stop") {
                         timerTime(true, skenario);
@@ -282,6 +351,7 @@
                         btnS1.innerHTML = "Stop";
                     }
                 } else if (skenario == 2) {
+                    skenarioSave = 2;
                     if (btnS2.innerHTML == "Stop") {
                         timerTime(true, skenario);
                         btnS2.style = "";
@@ -292,6 +362,7 @@
                         btnS2.innerHTML = "Stop";
                     }
                 } else if (skenario == 3) {
+                    skenarioSave = 3;
                     if (btnS3.innerHTML == "Stop") {
                         timerTime(true, skenario);
                         btnS3.style = "";
