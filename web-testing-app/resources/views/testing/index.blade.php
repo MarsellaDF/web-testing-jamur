@@ -83,7 +83,7 @@
                 <div id="myProgress">
                     <div id="myBar">0%</div>
                 </div>
-                <iframe class="embed-responsive-item" id="webview" src="http://192.168.100.111:8000" {{--  <iframe class="embed-responsive-item" id="webview" src="http://mitrajamurbondowoso.com/"  --}}
+                <iframe class="embed-responsive-item" id="webview" src="http://192.168.100.111:8000" {{--  <iframe class="embed-responsive-item" id="webview" src="http://testing.mitrajamurbondowoso.com/"  --}}
                     style="width: 1090px; height: 900px; display:none;"></iframe>
             </center>
         </div>
@@ -141,6 +141,8 @@
 
             let startLoadBar = 0;
             let endLoadBar = 0;
+
+            let durasiPerSkenario = "";
 
             // Menambahkan event listener untuk menerima pesan dari iframe
             window.addEventListener("message", receiveMessage, false);
@@ -224,6 +226,7 @@
                             duration: timerSave,
                             id_skenario: skenarioSave,
                             id_user: idUser,
+                            durasi_skenario: durasiPerSkenario,
                         },
                         success: function(data) {
                             console.log(data);
@@ -393,45 +396,6 @@
                 }
             }
 
-            function timerTimePage(reset, page, stop) {
-                var seconds = 0;
-                var minutes = 0;
-                var hours = 0;
-
-                if (reset) {
-                    window.clearInterval(tm);
-                    seconds = 0;
-                    minutes = 0;
-                    hours = 0;
-                    sec = "00";
-                    min = "00";
-                    hr = "00";
-                } else {
-                    function timer() {
-                        seconds++;
-                        if (seconds == 60) {
-                            seconds = 0;
-                            minutes++;
-                        }
-                        if (minutes == 60) {
-                            minutes = 0;
-                            hours++;
-                        }
-                        var sec = seconds < 10 ? "0" + seconds : seconds;
-                        var min = minutes < 10 ? "0" + minutes : minutes;
-                        var hr = hours < 10 ? "0" + hours : hours;
-                        document.getElementById("timerPage").innerHTML = hr + ":" + min + ":" + sec;
-                        if (stop && page == 1) {
-                            document.getElementById("timerDashboard").innerHTML = hr + ":" + min + ":" + sec;
-                        }
-
-                    }
-                    tm = window.setInterval(timer, 1000);
-                    // setInterval(timer, 1000);
-                }
-
-            }
-
             function timerTime(reset, skenario) {
                 var seconds = 0;
                 var minutes = 0;
@@ -479,10 +443,13 @@
                         var hr = hours < 10 ? "0" + hours : hours;
                         document.getElementById("timer").innerHTML = hr + ":" + min + ":" + sec;
                         if (skenario == 1) {
+                            durasiPerSkenario =  hr + ":" + min + ":" + sec;
                             document.getElementById("timeSkenario1").innerHTML = hr + ":" + min + ":" + sec;
                         } else if (skenario == 2) {
+                            durasiPerSkenario =  hr + ":" + min + ":" + sec;
                             document.getElementById("timeSkenario2").innerHTML = hr + ":" + min + ":" + sec;
                         } else if (skenario == 3) {
+                            durasiPerSkenario =  hr + ":" + min + ":" + sec;
                             document.getElementById("timeSkenario3").innerHTML = hr + ":" + min + ":" + sec;
 
                         }
