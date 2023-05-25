@@ -1,5 +1,21 @@
 <x-app-layout>
     @section('content')
+        <style>
+            #myProgress {
+                width: 100%;
+                background-color: #ddd;
+            }
+
+            #myBar {
+                width: 0%;
+                height: 30px;
+                background-color: #009CFF;
+                text-align: center;
+                align-items: left;
+                line-height: 30px;
+                color: white;
+            }
+        </style>
         <h4 class="text-center my-4">Silahkan Testing Website ini</h4>
         <div class="embed-responsive embed-responsive-16by9 my-5 p-2">
 
@@ -31,84 +47,6 @@
 
                 </ul>
 
-                {{--  <div class="col-12 col-sm-6">
-                    <div class="card card-primary card-outline card-tabs">
-                        <div class="card-header p-0 pt-1 border-bottom-0">
-                            <ul class="nav nav-tabs" id="custom-tabs-three-tab" role="tablist">
-                                <li class="nav-item">
-                                    <a class="nav-link active" id="custom-tabs-three-home-tab" data-toggle="pill"
-                                        href="#custom-tabs-three-home" role="tab" aria-controls="custom-tabs-three-home"
-                                        aria-selected="true">Home</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" id="custom-tabs-three-profile-tab" data-toggle="pill"
-                                        href="#custom-tabs-three-profile" role="tab"
-                                        aria-controls="custom-tabs-three-profile" aria-selected="false">Profile</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" id="custom-tabs-three-messages-tab" data-toggle="pill"
-                                        href="#custom-tabs-three-messages" role="tab"
-                                        aria-controls="custom-tabs-three-messages" aria-selected="false">Messages</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" id="custom-tabs-three-settings-tab" data-toggle="pill"
-                                        href="#custom-tabs-three-settings" role="tab"
-                                        aria-controls="custom-tabs-three-settings" aria-selected="false">Settings</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="card-body">
-                            <div class="tab-content" id="custom-tabs-three-tabContent">
-                                <div class="tab-pane fade active show" id="custom-tabs-three-home" role="tabpanel"
-                                    aria-labelledby="custom-tabs-three-home-tab">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin malesuada lacus
-                                    ullamcorper dui molestie, sit amet congue quam finibus. Etiam ultricies nunc non magna
-                                    feugiat commodo. Etiam odio magna, mollis auctor felis vitae, ullamcorper ornare ligula.
-                                    Proin pellentesque tincidunt nisi, vitae ullamcorper felis aliquam id. Pellentesque
-                                    habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin
-                                    id orci eu lectus blandit suscipit. Phasellus porta, ante et varius ornare, sem enim
-                                    sollicitudin eros, at commodo leo est vitae lacus. Etiam ut porta sem. Proin porttitor
-                                    porta nisl, id tempor risus rhoncus quis. In in quam a nibh cursus pulvinar non
-                                    consequat neque. Mauris lacus elit, condimentum ac condimentum at, semper vitae lectus.
-                                    Cras lacinia erat eget sapien porta consectetur.
-                                </div>
-                                <div class="tab-pane fade" id="custom-tabs-three-profile" role="tabpanel"
-                                    aria-labelledby="custom-tabs-three-profile-tab">
-                                    Mauris tincidunt mi at erat gravida, eget tristique urna bibendum. Mauris pharetra purus
-                                    ut ligula tempor, et vulputate metus facilisis. Lorem ipsum dolor sit amet, consectetur
-                                    adipiscing elit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices
-                                    posuere cubilia Curae; Maecenas sollicitudin, nisi a luctus interdum, nisl ligula
-                                    placerat mi, quis posuere purus ligula eu lectus. Donec nunc tellus, elementum sit amet
-                                    ultricies at, posuere nec nunc. Nunc euismod pellentesque diam.
-                                </div>
-                                <div class="tab-pane fade" id="custom-tabs-three-messages" role="tabpanel"
-                                    aria-labelledby="custom-tabs-three-messages-tab">
-                                    Morbi turpis dolor, vulputate vitae felis non, tincidunt congue mauris. Phasellus
-                                    volutpat augue id mi placerat mollis. Vivamus faucibus eu massa eget condimentum. Fusce
-                                    nec hendrerit sem, ac tristique nulla. Integer vestibulum orci odio. Cras nec augue
-                                    ipsum. Suspendisse ut velit condimentum, mattis urna a, malesuada nunc. Curabitur
-                                    eleifend facilisis velit finibus tristique. Nam vulputate, eros non luctus efficitur,
-                                    ipsum odio volutpat massa, sit amet sollicitudin est libero sed ipsum. Nulla lacinia, ex
-                                    vitae gravida fermentum, lectus ipsum gravida arcu, id fermentum metus arcu vel metus.
-                                    Curabitur eget sem eu risus tincidunt eleifend ac ornare magna.
-                                </div>
-                                <div class="tab-pane fade" id="custom-tabs-three-settings" role="tabpanel"
-                                    aria-labelledby="custom-tabs-three-settings-tab">
-                                    Pellentesque vestibulum commodo nibh nec blandit. Maecenas neque magna, iaculis tempus
-                                    turpis ac, ornare sodales tellus. Mauris eget blandit dolor. Quisque tincidunt venenatis
-                                    vulputate. Morbi euismod molestie tristique. Vestibulum consectetur dolor a vestibulum
-                                    pharetra. Donec interdum placerat urna nec pharetra. Etiam eget dapibus orci, eget
-                                    aliquet urna. Nunc at consequat diam. Nunc et felis ut nisl commodo dignissim. In hac
-                                    habitasse platea dictumst. Praesent imperdiet accumsan ex sit amet facilisis.
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>  --}}
-                {{--  <div id="webvw">
-
-                </div>  --}}
                 <table class="table table-bordered">
                     <thead>
                         <tr colspan="3">
@@ -142,6 +80,9 @@
                         </tr>
                     </tbody>
                 </table>
+                <div id="myProgress">
+                    <div id="myBar">0%</div>
+                </div>
                 <iframe class="embed-responsive-item" id="webview" src="http://192.168.100.111:8000" {{--  <iframe class="embed-responsive-item" id="webview" src="http://mitrajamurbondowoso.com/"  --}}
                     style="width: 1090px; height: 900px; display:none;"></iframe>
             </center>
@@ -170,6 +111,14 @@
             // Mendapatkan referensi ke elemen iframe
             var iframe = document.getElementById("webview");
 
+            var x = document.getElementById("webview");
+            var x1 = document.getElementById("skenario1");
+            var x2 = document.getElementById("skenario2");
+            var x3 = document.getElementById("skenario3");
+            var btnS1 = document.getElementById("btnSkenario1");
+            var btnS2 = document.getElementById("btnSkenario2");
+            var btnS3 = document.getElementById("btnSkenario3");
+
             const timerB = document.getElementById('timerBeranda');
             const timerP = document.getElementById('timerProduk');
             const timerG = document.getElementById('timerGaleri');
@@ -190,6 +139,9 @@
             let skenarioSave = 1;
             let idUser = {{ Auth::user()->id }};
 
+            let startLoadBar = 0;
+            let endLoadBar = 0;
+
             // Menambahkan event listener untuk menerima pesan dari iframe
             window.addEventListener("message", receiveMessage, false);
 
@@ -203,10 +155,6 @@
                     var yCoordinate = coordinates.y;
                     var menu = 4;
 
-                    if (xCoordinate >= 700 && xCoordinate <= 720 && yCoordinate >= 60 && yCoordinate <= 70) {
-                        console.log("ini menu produk");
-                    }
-
                     document.getElementById("webview").style.width = coordinates.scrollHorizontal + "px";
                     document.getElementById("webview").style.height = coordinates.scrollVertical + "px";
 
@@ -219,6 +167,8 @@
                     console.log("scroll horizontal: " + coordinates.scrollHorizontal);
                     console.log("scroll vertical: " + coordinates.scrollVertical);
                     console.log("scroll seconds: " + coordinates.timeseconds);
+
+                    cekSkenario(skenarioSave, coordinates);
 
                     if (coordinates.body == '/') {
                         menu = 1;
@@ -250,6 +200,9 @@
                         timerK.innerHTML = pageKontak;
                         timerSave = pageKontak;
                         menu = 5;
+                    } else if (coordinates.body == '/produk/detail-produk/jamur-tiram') {
+                        stopTimer(coordinates.body);
+                        menu = 7;
                     } else {
                         stopTimer(coordinates.body);
                         timerSave = 0;
@@ -277,13 +230,79 @@
                         }
                     });
 
-                    console.log("selesai");
-
                     // Contoh aksi lain yang dapat dilakukan:
                     // - Mengubah tampilan elemen di dalam elemen induk berdasarkan koordinat
                     // - Mengirim data koordinat ke server melalui AJAX
                     // - Memperbarui nilai variabel dengan koordinat yang diperoleh
                     // - Dan sebagainya
+                }
+            }
+
+            function cekSkenario(skenario, data) {
+                switch (skenario) {
+                    case 1:
+                        skenario1(data);
+                        console.log("ini data ==>" + data.body);
+                        console.log("cek skenario 1");
+                        break
+                    case 2:
+                        console.log("cek skenario 2");
+                        break
+                    case 3:
+                        console.log("cek skenario 3");
+                        break
+                    default:
+                }
+            }
+
+            var i = 0;
+
+            function move() {
+                if (i == 0) {
+                    i = 1;
+                    var elem = document.getElementById("myBar");
+                    var width = startLoadBar;
+                    var id = setInterval(frame, 10);
+
+                    function frame() {
+                        if (width >= endLoadBar) {
+                            clearInterval(id);
+                            i = 0;
+                        } else {
+                            width++;
+                            elem.style.width = width + "%";
+                            elem.innerHTML = width + "%";
+                        }
+                    }
+                }
+            }
+
+            function skenario1(data) {
+                if (data.x >= 670 && data.x <= 730 && data.y >= 40 && data.y <= 80) {
+                    endLoadBar = 100/3;
+                    move();
+                    console.log("tombolll -->>>>> button produk");
+                }
+                if (data.x >= 130 && data.x <= 300 && data.y >= 980 && data.y <= 1030) {
+                    endLoadBar = 100/2;
+                    move();
+                    console.log("tombolll -->>>>> button produk jamur tiram");
+                }
+                if (data.x >= 555 && data.x <= 980 && data.y >= 490 && data.y <= 590) {
+                    endLoadBar = 100/1;
+                    move();
+                    console.log("tombolll -->>>>> button pesan sekaranggg");
+                    console.log("pertama" + btnS1.innerHTML);
+                    if (btnS1.innerHTML == "Stop") {
+                        timerTime(true, 1);
+                        btnS1.style = "display:none";
+                        btnS1.innerHTML = "Mulai";
+                        iframe.style.display = "none";
+                    } else {
+                        timerTime(false, 1);
+                        btnS1.style = "outline : none; background-color: #E62F2F";
+                        btnS1.innerHTML = "Stop";
+                    }
                 }
             }
 
@@ -320,23 +339,18 @@
                         saveTentang = saveTentang + pageTentang;
                         break;
                     default:
-                        // code block
+                        saveBeranda = saveBeranda + pageBeranda;
+                        saveGaleri = saveGaleri + pageGaleri;
+                        saveTentang = saveTentang + pageTentang;
+                        saveKontak = saveKontak + pageKontak;
                 }
 
             }
 
             function showInframe(skenario) {
-                var x = document.getElementById("webview");
-                var x1 = document.getElementById("skenario1");
-                var x2 = document.getElementById("skenario2");
-                var x3 = document.getElementById("skenario3");
-                var btnS1 = document.getElementById("btnSkenario1");
-                var btnS2 = document.getElementById("btnSkenario2");
-                var btnS3 = document.getElementById("btnSkenario3");
-
-
                 if (skenario == 1) {
                     skenarioSave = 1;
+                    iframe.src = 'http://192.168.100.111:8000/'
                     console.log("pertama" + btnS1.innerHTML);
                     if (btnS1.innerHTML == "Stop") {
                         timerTime(true, skenario);
@@ -349,6 +363,7 @@
                     }
                 } else if (skenario == 2) {
                     skenarioSave = 2;
+                    iframe.src = 'http://192.168.100.111:8000/';
                     if (btnS2.innerHTML == "Stop") {
                         timerTime(true, skenario);
                         btnS2.style = "";
@@ -360,6 +375,7 @@
                     }
                 } else if (skenario == 3) {
                     skenarioSave = 3;
+                    iframe.src = 'http://192.168.100.111:8000/';
                     if (btnS3.innerHTML == "Stop") {
                         timerTime(true, skenario);
                         btnS3.style = "";
@@ -370,10 +386,10 @@
                         btnS3.innerHTML = "Stop";
                     }
                 }
-                if (x.style.display === "none") {
-                    x.style.display = "block";
+                if (iframe.style.display === "none") {
+                    iframe.style.display = "block";
                 } else {
-                    x.style.display = "none";
+                    iframe.style.display = "none";
                 }
             }
 
