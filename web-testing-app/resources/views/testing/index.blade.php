@@ -30,15 +30,14 @@
                     </li>
                     <span id="skenario2">
                         <li class="list-group-item d-flex justify-content-between align-items-center">
-                            2. Lakukan pencarian halaman informasi lengkap dari Mitra Jamur Bondowoso (Kontak
-                            Owner) <H6 id="timeSkenario2" style="display:none;"></H6>
+                            2. Lakukan pencarian visi dan misi owner! <H6 id="timeSkenario2" style="display:none;"></H6>
                             <span class="badge badge-primary badge-pill"><a class="btn btn-sm btn-primary"
                                     href="javascript:showInframe(2);" id="btnSkenario2">Mulai</a></span>
                         </li>
                     </span>
                     <span id="skenario3">
                         <li class="list-group-item d-flex justify-content-between align-items-center">
-                            3. Lakukan kritik dan saran terkait Mitra Jamur Bondowoso <H6 id="timeSkenario3"
+                            3. Lakukan kritik dan saran terkait Mitra Jamur Bondowoso! <H6 id="timeSkenario3"
                                 style="display:none;"></H6>
                             <span class="badge badge-primary badge-pill"><a class="btn btn-sm btn-primary"
                                     href="javascript:showInframe(3);" id="btnSkenario3">Mulai</a></span>
@@ -50,16 +49,16 @@
                 <table class="table table-bordered">
                     <thead>
                         <tr colspan="3">
-                            Timer
+                            Timer Per Halaman
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td>Timer Beranda</td>
-                            <td>Timer Produk</td>
-                            <td>Timer Galeri</td>
-                            <td>Timer Tentang</td>
-                            <td>Timer Kontak</td>
+                            <td>Beranda</td>
+                            <td>Produk</td>
+                            <td>Galeri</td>
+                            <td>Tentang</td>
+                            <td>Kontak</td>
                         </tr>
                         <tr>
                             <td>
@@ -83,8 +82,8 @@
                 <div id="myProgress">
                     <div id="myBar">0%</div>
                 </div>
-                <iframe class="embed-responsive-item" id="webview" src="http://192.168.100.111:8000" {{--  <iframe class="embed-responsive-item" id="webview" src="http://testing.mitrajamurbondowoso.com/"  --}}
-                    style="width: 1090px; height: 900px; display:none;"></iframe>
+                <iframe class="embed-responsive-item" id="webview" src="http://testing.mitrajamurbondowoso.com/"
+                    {{--  <iframe class="embed-responsive-item" id="webview" src="http://testing.mitrajamurbondowoso.com/"  --}} style="width: 1090px; height: 900px; display:none;"></iframe>
             </center>
         </div>
     @endsection
@@ -249,9 +248,13 @@
                         console.log("cek skenario 1");
                         break
                     case 2:
+                        skenario2(data);
+                        console.log("ini data ==>" + data.body);
                         console.log("cek skenario 2");
                         break
                     case 3:
+                        skenario3(data);
+                        console.log("ini data ==>" + data.body);
                         console.log("cek skenario 3");
                         break
                     default:
@@ -282,19 +285,19 @@
 
             function skenario1(data) {
                 if (data.x >= 670 && data.x <= 730 && data.y >= 40 && data.y <= 80) {
-                    endLoadBar = 100/3;
+                    endLoadBar = 100 / 3;
                     move();
                     console.log("tombolll -->>>>> button produk");
                 }
                 if (data.x >= 130 && data.x <= 300 && data.y >= 980 && data.y <= 1030) {
-                    endLoadBar = 100/2;
+                    endLoadBar = 100 / 2;
                     move();
                     console.log("tombolll -->>>>> button produk jamur tiram");
                 }
-                if (data.x >= 555 && data.x <= 980 && data.y >= 490 && data.y <= 590) {
-                    endLoadBar = 100/1;
+                if (data.x >= 545 && data.x <= 1000 && data.y >= 200 && data.y <= 600) {
+                    endLoadBar = 100 / 1;
                     move();
-                    console.log("tombolll -->>>>> button pesan sekaranggg");
+                    console.log("tombolll -->>>>> button pesan sekarang");
                     console.log("pertama" + btnS1.innerHTML);
                     if (btnS1.innerHTML == "Stop") {
                         timerTime(true, 1);
@@ -305,6 +308,54 @@
                         timerTime(false, 1);
                         btnS1.style = "outline : none; background-color: #E62F2F";
                         btnS1.innerHTML = "Stop";
+                    }
+                }
+            }
+
+            function skenario2(data) {
+                if (data.x >= 840 && data.x <= 925 && data.y >= 45 && data.y <= 90) {
+                    endLoadBar = 100 / 2;
+                    move();
+                    console.log("tombolll -->>>>> button tentang");
+                }
+                if (data.x >= 410 && data.x <= 660 && data.y >= 845 && data.y <= 1085) {
+                    endLoadBar = 100 / 1;
+                    move();
+                    console.log("tombolll -->>>>> button visi misi");
+                    console.log("kedua" + btnS2.innerHTML);
+                    if (btnS2.innerHTML == "Stop") {
+                        timerTime(true, 2);
+                        btnS2.style = "display:none";
+                        btnS2.innerHTML = "Mulai";
+                        iframe.style.display = "none";
+                    } else {
+                        timerTime(false, 2);
+                        btnS2.style = "outline : none; background-color: #E62F2F";
+                        btnS2.innerHTML = "Stop";
+                    }
+                }
+            }
+
+            function skenario3(data) {
+                if (data.x >= 585 && data.x <= 650 && data.y >= 50 && data.y <= 80) {
+                    endLoadBar = 100 / 2;
+                    move();
+                    console.log("tombolll -->>>>> button beranda");
+                }
+                if (data.x >= 550 && data.x <= 930 && data.y >= 3956 && data.y <= 4010) {
+                    endLoadBar = 100 / 1;
+                    move();
+                    console.log("tombolll -->>>>> button saran");
+                    console.log("ketiga" + btnS3.innerHTML);
+                    if (btnS3.innerHTML == "Stop") {
+                        timerTime(true, 3);
+                        btnS3.style = "display:none";
+                        btnS3.innerHTML = "Mulai";
+                        iframe.style.display = "none";
+                    } else {
+                        timerTime(false, 3);
+                        btnS3.style = "outline : none; background-color: #E62F2F";
+                        btnS3.innerHTML = "Stop";
                     }
                 }
             }
@@ -353,7 +404,7 @@
             function showInframe(skenario) {
                 if (skenario == 1) {
                     skenarioSave = 1;
-                    iframe.src = 'http://192.168.100.111:8000/'
+                    iframe.src = 'http://testing.mitrajamurbondowoso.com/'
                     console.log("pertama" + btnS1.innerHTML);
                     if (btnS1.innerHTML == "Stop") {
                         timerTime(true, skenario);
@@ -366,7 +417,7 @@
                     }
                 } else if (skenario == 2) {
                     skenarioSave = 2;
-                    iframe.src = 'http://192.168.100.111:8000/';
+                    iframe.src = 'http://testing.mitrajamurbondowoso.com/';
                     if (btnS2.innerHTML == "Stop") {
                         timerTime(true, skenario);
                         btnS2.style = "";
@@ -378,7 +429,7 @@
                     }
                 } else if (skenario == 3) {
                     skenarioSave = 3;
-                    iframe.src = 'http://192.168.100.111:8000/';
+                    iframe.src = 'http://testing.mitrajamurbondowoso.com/';
                     if (btnS3.innerHTML == "Stop") {
                         timerTime(true, skenario);
                         btnS3.style = "";
@@ -443,13 +494,13 @@
                         var hr = hours < 10 ? "0" + hours : hours;
                         document.getElementById("timer").innerHTML = hr + ":" + min + ":" + sec;
                         if (skenario == 1) {
-                            durasiPerSkenario =  hr + ":" + min + ":" + sec;
+                            durasiPerSkenario = hr + ":" + min + ":" + sec;
                             document.getElementById("timeSkenario1").innerHTML = hr + ":" + min + ":" + sec;
                         } else if (skenario == 2) {
-                            durasiPerSkenario =  hr + ":" + min + ":" + sec;
+                            durasiPerSkenario = hr + ":" + min + ":" + sec;
                             document.getElementById("timeSkenario2").innerHTML = hr + ":" + min + ":" + sec;
                         } else if (skenario == 3) {
-                            durasiPerSkenario =  hr + ":" + min + ":" + sec;
+                            durasiPerSkenario = hr + ":" + min + ":" + sec;
                             document.getElementById("timeSkenario3").innerHTML = hr + ":" + min + ":" + sec;
 
                         }
