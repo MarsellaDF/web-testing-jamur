@@ -8,6 +8,7 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
 
 class AuthenticatedSessionController extends Controller
@@ -27,14 +28,14 @@ class AuthenticatedSessionController extends Controller
     {
         $request->authenticate($request);
 
-        $user = \DB::table('users')
+        $user = DB::table('users')
                     ->where('email', $request->email)
                     ->first();
 
         switch($user->role){
             case 3:
                 $request->session()->regenerate();
-                return redirect()->intended('/dashboard');
+                return redirect()->intended('/testing');
                 break;
             default:
                 // $request->session()->regenerate();
