@@ -89,6 +89,7 @@
     @endsection
     @push('js')
         <script>
+            var urlWebsite = "http://testing.mitrajamurbondowoso.com/";
             var x = document.getElementById("webview");
 
             function handleClick(event) {
@@ -403,8 +404,9 @@
 
             function showInframe(skenario) {
                 if (skenario == 1) {
+                    endLoadBar = 0;
                     skenarioSave = 1;
-                    iframe.src = 'http://testing.mitrajamurbondowoso.com/'
+                    iframe.src = urlWebsite;
                     console.log("pertama" + btnS1.innerHTML);
                     if (btnS1.innerHTML == "Stop") {
                         timerTime(true, skenario);
@@ -416,8 +418,9 @@
                         btnS1.innerHTML = "Stop";
                     }
                 } else if (skenario == 2) {
+                    endLoadBar = 0;
                     skenarioSave = 2;
-                    iframe.src = 'http://testing.mitrajamurbondowoso.com/';
+                    iframe.src = urlWebsite;
                     if (btnS2.innerHTML == "Stop") {
                         timerTime(true, skenario);
                         btnS2.style = "";
@@ -428,8 +431,9 @@
                         btnS2.innerHTML = "Stop";
                     }
                 } else if (skenario == 3) {
+                    endLoadBar = 0;
                     skenarioSave = 3;
-                    iframe.src = 'http://testing.mitrajamurbondowoso.com/';
+                    iframe.src = urlWebsite;
                     if (btnS3.innerHTML == "Stop") {
                         timerTime(true, skenario);
                         btnS3.style = "";
