@@ -62,16 +62,16 @@
                         </tr>
                         <tr>
                             <td>
-                                <div id="timerBeranda">00:00:00</div>
+                                <div id="timerBeranda">00 Detik</div>
                             </td>
                             <td>
-                                <div id="timerProduk">00:00:00</div>
+                                <div id="timerProduk">00 Detik</div>
                             </td>
                             <td>
-                                <div id="timerGaleri">00:00:00</div>
+                                <div id="timerGaleri">00 Detik</div>
                             </td>
                             <td>
-                                <div id="timerTentang">00:00:00</div>
+                                <div id="timerTentang">00 Detik</div>
                             </td>
                             <td>
                                 <div id="timerKontak">00:00:00</div>
@@ -175,31 +175,31 @@
                     if (coordinates.body == '/') {
                         menu = 1;
                         pageBeranda = coordinates.timeseconds;
-                        timerB.innerHTML = pageBeranda;
+                        timerB.innerHTML = pageBeranda+" Detik";
                         timerSave = pageBeranda;
                         stopTimer(coordinates.body);
                     } else if (coordinates.body == '/produk') {
                         stopTimer(coordinates.body);
-                        pageProduk = coordinates.timeseconds;
-                        timerP.innerHTML = pageProduk;
+                        pageProduk = coordinates.timeseconds ;
+                        timerP.innerHTML = pageProduk +" Detik";
                         timerSave = pageProduk;
                         menu = 2;
                     } else if (coordinates.body == '/gallery') {
                         stopTimer(coordinates.body);
                         pageGaleri = coordinates.timeseconds;
-                        timerG.innerHTML = pageGaleri;
+                        timerG.innerHTML = pageGaleri+" Detik";
                         timerSave = pageGaleri;
                         menu = 3;
                     } else if (coordinates.body == '/tentang') {
                         stopTimer(coordinates.body);
                         pageTentang = coordinates.timeseconds;
-                        timerT.innerHTML = pageTentang;
+                        timerT.innerHTML = pageTentang+" Detik";
                         timerSave = pageTentang;
                         menu = 4;
                     } else if (coordinates.body == '/kontak') {
                         stopTimer(coordinates.body);
                         pageKontak = coordinates.timeseconds;
-                        timerK.innerHTML = pageKontak;
+                        timerK.innerHTML = pageKontak+" Detik";
                         timerSave = pageKontak;
                         menu = 5;
                     } else if (coordinates.body == '/produk/detail-produk/jamur-tiram') {
@@ -270,7 +270,6 @@
                     var elem = document.getElementById("myBar");
                     var width = startLoadBar;
                     var id = setInterval(frame, 10);
-
                     function frame() {
                         if (width >= endLoadBar) {
                             clearInterval(id);
@@ -282,6 +281,11 @@
                         }
                     }
                 }
+            }
+
+            function resetLoad() {
+                endLoadBar = 100 / 100;
+                move();
             }
 
             function skenario1(data) {
@@ -404,7 +408,7 @@
 
             function showInframe(skenario) {
                 if (skenario == 1) {
-                    endLoadBar = 0;
+                    resetLoad();
                     skenarioSave = 1;
                     iframe.src = urlWebsite;
                     console.log("pertama" + btnS1.innerHTML);
@@ -418,7 +422,7 @@
                         btnS1.innerHTML = "Stop";
                     }
                 } else if (skenario == 2) {
-                    endLoadBar = 0;
+                    resetLoad();
                     skenarioSave = 2;
                     iframe.src = urlWebsite;
                     if (btnS2.innerHTML == "Stop") {
@@ -431,7 +435,7 @@
                         btnS2.innerHTML = "Stop";
                     }
                 } else if (skenario == 3) {
-                    endLoadBar = 0;
+                    resetLoad();
                     skenarioSave = 3;
                     iframe.src = urlWebsite;
                     if (btnS3.innerHTML == "Stop") {
