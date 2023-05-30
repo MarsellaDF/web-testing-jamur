@@ -1,6 +1,8 @@
 <x-app-layout>
     @section('content')
-        <!-- Sale & Revenue Start -->
+        <h1>Halaman Dashboard</h1>
+
+        {{--  <!-- Sale & Revenue Start -->
         <div class="container-fluid pt-4 px-4">
             <div class="row g-4">
                 <div class="col-sm-6 col-xl-3">
@@ -264,6 +266,6 @@
                 </div>
             </div>
         </div>
-        <!-- Widgets End -->
+        <!-- Widgets End -->  --}}
     @endsection
 </x-app-layout>

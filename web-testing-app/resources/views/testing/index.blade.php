@@ -26,13 +26,13 @@
                     <li class="list-group-item d-flex justify-content-between align-items-center" id="skenario1">
                         1. Lakukan pemesanan produk jamur tiram! <H6 id="timeSkenario1" style="display:none;"></H6>
                         <span class="badge badge-primary badge-pill"><a class="btn btn-sm btn-primary"
-                                href="javascript:showInframe(1);" id="btnSkenario1">Mulai</a></span>
+                                href="javascript:showInframe(1);" id="btnSkenario1">Start</a></span>
                     </li>
                     <span id="skenario2">
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             2. Lakukan pencarian visi dan misi owner! <H6 id="timeSkenario2" style="display:none;"></H6>
                             <span class="badge badge-primary badge-pill"><a class="btn btn-sm btn-primary"
-                                    href="javascript:showInframe(2);" id="btnSkenario2">Mulai</a></span>
+                                    href="javascript:showInframe(2);" id="btnSkenario2">Start</a></span>
                         </li>
                     </span>
                     <span id="skenario3">
@@ -40,7 +40,7 @@
                             3. Lakukan kritik dan saran terkait Mitra Jamur Bondowoso! <H6 id="timeSkenario3"
                                 style="display:none;"></H6>
                             <span class="badge badge-primary badge-pill"><a class="btn btn-sm btn-primary"
-                                    href="javascript:showInframe(3);" id="btnSkenario3">Mulai</a></span>
+                                    href="javascript:showInframe(3);" id="btnSkenario3">Start</a></span>
                         </li>
                     </span>
 
@@ -175,31 +175,31 @@
                     if (coordinates.body == '/') {
                         menu = 1;
                         pageBeranda = coordinates.timeseconds;
-                        timerB.innerHTML = pageBeranda+" Detik";
+                        timerB.innerHTML = pageBeranda + " Detik";
                         timerSave = pageBeranda;
                         stopTimer(coordinates.body);
                     } else if (coordinates.body == '/produk') {
                         stopTimer(coordinates.body);
-                        pageProduk = coordinates.timeseconds ;
-                        timerP.innerHTML = pageProduk +" Detik";
+                        pageProduk = coordinates.timeseconds;
+                        timerP.innerHTML = pageProduk + " Detik";
                         timerSave = pageProduk;
                         menu = 2;
                     } else if (coordinates.body == '/gallery') {
                         stopTimer(coordinates.body);
                         pageGaleri = coordinates.timeseconds;
-                        timerG.innerHTML = pageGaleri+" Detik";
+                        timerG.innerHTML = pageGaleri + " Detik";
                         timerSave = pageGaleri;
                         menu = 3;
                     } else if (coordinates.body == '/tentang') {
                         stopTimer(coordinates.body);
                         pageTentang = coordinates.timeseconds;
-                        timerT.innerHTML = pageTentang+" Detik";
+                        timerT.innerHTML = pageTentang + " Detik";
                         timerSave = pageTentang;
                         menu = 4;
                     } else if (coordinates.body == '/kontak') {
                         stopTimer(coordinates.body);
                         pageKontak = coordinates.timeseconds;
-                        timerK.innerHTML = pageKontak+" Detik";
+                        timerK.innerHTML = pageKontak + " Detik";
                         timerSave = pageKontak;
                         menu = 5;
                     } else if (coordinates.body == '/produk/detail-produk/jamur-tiram') {
@@ -270,6 +270,7 @@
                     var elem = document.getElementById("myBar");
                     var width = startLoadBar;
                     var id = setInterval(frame, 10);
+
                     function frame() {
                         if (width >= endLoadBar) {
                             clearInterval(id);
@@ -307,7 +308,7 @@
                     if (btnS1.innerHTML == "Stop") {
                         timerTime(true, 1);
                         btnS1.style = "display:none";
-                        btnS1.innerHTML = "Mulai";
+                        btnS1.innerHTML = "Start";
                         iframe.style.display = "none";
                     } else {
                         timerTime(false, 1);
@@ -331,7 +332,7 @@
                     if (btnS2.innerHTML == "Stop") {
                         timerTime(true, 2);
                         btnS2.style = "display:none";
-                        btnS2.innerHTML = "Mulai";
+                        btnS2.innerHTML = "Start";
                         iframe.style.display = "none";
                     } else {
                         timerTime(false, 2);
@@ -355,7 +356,7 @@
                     if (btnS3.innerHTML == "Stop") {
                         timerTime(true, 3);
                         btnS3.style = "display:none";
-                        btnS3.innerHTML = "Mulai";
+                        btnS3.innerHTML = "Start";
                         iframe.style.display = "none";
                     } else {
                         timerTime(false, 3);
@@ -415,7 +416,7 @@
                     if (btnS1.innerHTML == "Stop") {
                         timerTime(true, skenario);
                         btnS1.style = "";
-                        btnS1.innerHTML = "Mulai";
+                        btnS1.innerHTML = "Start";
                     } else {
                         timerTime(false, skenario);
                         btnS1.style = "outline : none; background-color: #E62F2F";
@@ -428,7 +429,7 @@
                     if (btnS2.innerHTML == "Stop") {
                         timerTime(true, skenario);
                         btnS2.style = "";
-                        btnS2.innerHTML = "Mulai";
+                        btnS2.innerHTML = "Start";
                     } else {
                         timerTime(false, skenario);
                         btnS2.style = "outline : none; background-color: #E62F2F";
@@ -441,7 +442,7 @@
                     if (btnS3.innerHTML == "Stop") {
                         timerTime(true, skenario);
                         btnS3.style = "";
-                        btnS3.innerHTML = "Mulai";
+                        btnS3.innerHTML = "Start";
                     } else {
                         timerTime(false, skenario);
                         btnS3.style = "outline : none; background-color: #E62F2F";
