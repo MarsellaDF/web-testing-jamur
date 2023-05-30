@@ -77,7 +77,7 @@
         </div> --}}
         <div class="nav-item dropdown">
             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                <span class="fa fa-user me-2"></span>Profile</a>
+                <span class="fa fa-user me-2"></span>{{ Auth::user()->name }}</a>
             </a>
             <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
                 {{-- <a href="#" class="dropdown-item">My Profile</a>

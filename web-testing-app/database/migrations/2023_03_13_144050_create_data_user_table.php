@@ -16,6 +16,8 @@ return new class extends Migration
             $table->string('ip');
             $table->integer('sumbu_x');
             $table->integer('sumbu_y');
+            $table->string('id_menu');
+            $table->string('id_skenario');
             $table->timestamps();
         });
     }

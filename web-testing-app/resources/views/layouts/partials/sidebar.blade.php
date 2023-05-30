@@ -16,7 +16,12 @@
             </div>
         </div> --}}
         <div class="navbar-nav w-100">
-            <a href="/dashboard" class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
+            @if (Auth::user() != null)
+                @if (Auth::user()->role != 3)
+                    <a href="/dashboard" class="nav-item nav-link active"><i
+                            class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
+                @endif
+            @endif
             {{-- <div class="nav-item dropdown">
                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i
                         class="fa fa-laptop me-2"></i>Elements</a>

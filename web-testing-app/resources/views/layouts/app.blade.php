@@ -33,6 +33,9 @@
 </head>
 
 <body>
+    <script>
+        // Add event listener to the document for a click event
+    </script>
     <div class="container-xxl position-relative bg-white d-flex p-0">
         <!-- Spinner Start -->
         <div id="spinner"

@@ -2,12 +2,45 @@
 
     @section('content')
         <h4 class="text-center my-4">Hasil Testing</h4>
-        <div class="embed-responsive embed-responsive-16by9 my-5 p-2" id="heatmap"
-            style="position: relative; height: 3620px; width: 1321px;">
-            <div class="">
-                <img class="embed-responsive-item" src="/assets/img/Beranda2.png" allowfullscreen
-                    style="width: 1321px; height: 3620px;"></img>
-            </div>
+        <center>
+            <table class="table table-bordered" style="width: 600px; text-align: center; ">
+                <thead>
+                    <tr>
+                        <th colspan="5">
+                            Menu
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <button onclick="changeIframeSrc('')" class="btn btn-light">Beranda</button>
+                        </td>
+                        <td>
+                            <button onclick="changeIframeSrc('produk')" class="btn btn-light">Produk</button>
+                        </td>
+                        <td>
+                            <button onclick="changeIframeSrc('gallery')" class="btn btn-light">Galeri</button>
+                        </td>
+                        <td>
+                            <button onclick="changeIframeSrc('tentang')" class="btn btn-light">Tentang</button>
+                        </td>
+                        <td>
+                            <button onclick="changeIframeSrc('kontak')" class="btn btn-light">Kontak</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </center>
+        <div class="embed-responsive embed-responsive-16by9 my-5 p-2" id="heatmap">
+            {{--  style="position: relative; height: 3620px; width: 1321px;">  --}}
+
+            <iframe class="embed-responsive-item" id="webview" src="http://testing.mitrajamurbondowoso.com/"
+                style="width:1073px; height:4403px;">
+            </iframe>
+
+            {{--  <img class="embed-responsive-item" src="/assets/img/Beranda2.png" allowfullscreen
+                    style="width: 1321px; height: 3620px;"></img>  --}}
         </div>
         @push('js')
             <script src="https://cdnjs.cloudflare.com/ajax/libs/heatmap.js/2.0.0/heatmap.min.js"
@@ -15,25 +48,89 @@
                 crossorigin="anonymous" referrerpolicy="no-referrer"></script>
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
             <script>
-                var data_sumbu_x = [];
-                var data_sumbu_y = [];
+                let data_sumbu_x = [];
+                let data_sumbu_y = [];
+                let points = [];
+                let max = 0;
+                let data = {};
+                // Get reference to the iframe element
+                $(document).ready(getData(1));
 
-                $(document).ready(function() {
-                    console.log("hallo");
+                // minimal heatmap instance configuration
+                var heatmapInstance = h337.create({
+                    // only container is required, the rest will be defaults
+                    container: document.getElementById('heatmap')
+                });
+
+                function changeIframeSrc(type) {
+                    // Get reference to the iframe element
+                    var iframe = document.getElementById('webview');
+                    iframe.style.width = '1073px';
+                    iframe.style.height = '4403px';
+                    // Change the src attribute of the iframe
+                    console.log("cek");
+
+                    iframe.src = 'http://testing.mitrajamurbondowoso.com/' + type;
+                    data_sumbu_x = [];
+                    data_sumbu_y = [];
+                    points = [];
+                    max = 0;
+                    data = {};
+
+                    switch (type) {
+                        case "":
+                            getData(1);
+                            iframe.style.width = '1073px';
+                            iframe.style.height = '4403px';
+                            break;
+                        case "produk":
+                            getData(2);
+                            console.log("change size iframe");
+                            iframe.style.width = '1057px';
+                            iframe.style.height = '1307px';
+                            break;
+                        case "gallery":
+                            getData(3);
+                            iframe.style.width = '1073px';
+                            iframe.style.height = '4403px';
+                            break;
+                        case "tentang":
+                            getData(4);
+                            iframe.style.width = '1040px';
+                            iframe.style.height = '1586px';
+                            break;
+                        case "kontak":
+                            getData(5);
+                            iframe.style.width = '1040px';
+                            iframe.style.height = '1586px';
+                            break;
+                        default:
+                            // code block
+                    }
+                }
+
+                function getData(menu) {
+                    //heatmapInstance.setData(data);
+                    console.log("cek ceke cekk");
                     $.ajaxSetup({
                         headers: {
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                         }
                     });
-                    console.log("hallosss");
                     $.ajax({
                         type: 'POST',
                         url: "{{ route('getmonitor') }}",
                         dataType: 'json',
+                        data: {
+                            menu: menu,
+                        },
                         success: function(res) {
-                            console.log("akuuuu");
-                            console.log("dataku >> " + res['success']);
-                            console.log("dataku >> " + res['data'][1].ip);
+                            data_sumbu_x = [];
+                            data_sumbu_y = [];
+                            points = [];
+                            max = 0;
+                            data = {};
+
                             console.log("dataku >> " + res.data.length);
                             console.log(res);
                             data_sumbu_y.splice();
@@ -47,21 +144,11 @@
                             console.log("hasil data1");
                             console.log('datain1' + data_sumbu_x.length);
 
-                            var points = [];
-                            var max = 0;
-                            // minimal heatmap instance configuration
-                            var heatmapInstance = h337.create({
-                                // only container is required, the rest will be defaults
-                                container: document.getElementById('heatmap')
-                            });
-
-                            console.log(data_sumbu_x.length);
-
                             for (var i = 0; i < data_sumbu_x.length; i++) {
                                 var val = 60;
                                 console.log(val);
                                 max = Math.max(max, val);
-                                var point = {
+                                point = {
                                     x: data_sumbu_x[i],
                                     y: data_sumbu_y[i],
                                     value: val
@@ -69,7 +156,7 @@
                                 points.push(point);
                             }
                             // heatmap data format
-                            var data = {
+                            data = {
                                 max: max,
                                 data: points
                             };
@@ -84,10 +171,7 @@
                             console.log("errorrku");
                         }
                     });
-                });
-
-                // now generate some random data
-            </script>
+                }
             </script>
         @endpush
     @endsection
