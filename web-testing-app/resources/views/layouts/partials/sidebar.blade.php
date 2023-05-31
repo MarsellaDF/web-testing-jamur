@@ -32,16 +32,11 @@
                     <a href="element.html" class="dropdown-item">Other Elements</a>
                 </div>
             </div> --}}
-            @if (Auth::user() != null)
-                {{--  @if (Auth::user()->role != 3)
-                    <a href="/datapakar" class="nav-item nav-link"><i class="fa fa-file me-2"></i>Data Pakar</a>  --}}
-                @if (Auth::user()->role != 2)
-                    <a href="/datauser"
-                        class="nav-item nav-link {{ Request::segment(1) == 'datauser' ? 'active' : '' }}"><i
-                            class="fa fa-th me-2"></i>Data User</a>
+            {{--  @if (Auth::user() != null)
+                @if (Auth::user()->role != 3)
+                    <a href="/datapakar" class="nav-item nav-link"><i class="fa fa-file me-2"></i>Data Pakar</a>
                 @endif
-                {{--  @endif  --}}
-            @endif
+            @endif  --}}
             <a href="/testing" class="nav-item nav-link {{ Request::segment(1) == 'testing' ? 'active' : '' }}"><i
                     class="fa fa-laptop me-2"></i>Testing</a>
             @if (Auth::user() != null)
@@ -49,6 +44,11 @@
                     <a href="/monitoring"
                         class="nav-item nav-link {{ Request::segment(1) == 'monitoring' ? 'active' : '' }}"><i
                             class="fa fa-laptop me-2"></i>Monitoring</a>
+                    @if (Auth::user()->role != 2)
+                        <a href="/datauser"
+                            class="nav-item nav-link {{ Request::segment(1) == 'datauser' ? 'active' : '' }}"><i
+                                class="fa fa-th me-2"></i>Data User</a>
+                    @endif
                 @endif
             @endif
             {{-- <a href="table.html" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Tables</a>
