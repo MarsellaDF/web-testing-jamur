@@ -30,7 +30,8 @@
                     </li>
                     <span id="skenario2">
                         <li class="list-group-item d-flex justify-content-between align-items-center">
-                            2. Lakukan pencarian visi dan misi owner! <H6 id="timeSkenario2" style="display:none;"></H6>
+                            2. Lakukan pencarian alamat (gmaps) Mitra Jamur Bondowoso! <H6 id="timeSkenario2"
+                                style="display:none;"></H6>
                             <span class="badge badge-primary badge-pill"><a class="btn btn-sm btn-primary"
                                     href="javascript:showInframe(2);" id="btnSkenario2">Start</a></span>
                         </li>
@@ -319,15 +320,15 @@
             }
 
             function skenario2(data) {
-                if (data.x >= 840 && data.x <= 925 && data.y >= 45 && data.y <= 90) {
+                if (data.x >= 935 && data.x <= 1015 && data.y >= 45 && data.y <= 90) {
                     endLoadBar = 100 / 2;
                     move();
-                    console.log("tombolll -->>>>> button tentang");
+                    console.log("tombolll -->>>>> button kontak");
                 }
-                if (data.x >= 410 && data.x <= 660 && data.y >= 845 && data.y <= 1085) {
+                if (data.x >= 570 && data.x <= 965 && data.y >= 145 && data.y <= 550) {
                     endLoadBar = 100 / 1;
                     move();
-                    console.log("tombolll -->>>>> button visi misi");
+                    console.log("tombolll -->>>>> button maps");
                     console.log("kedua" + btnS2.innerHTML);
                     if (btnS2.innerHTML == "Stop") {
                         timerTime(true, 2);
