@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <title>Web Testing</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <meta content="" name="keywords">
     <meta content="" name="description">
     <meta name="csrf-token" content="{{ csrf_token() }}">
