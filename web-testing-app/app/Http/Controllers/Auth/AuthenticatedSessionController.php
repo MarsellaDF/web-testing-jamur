@@ -10,6 +10,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\Redirect;
+
 
 class AuthenticatedSessionController extends Controller
 {
@@ -35,7 +37,8 @@ class AuthenticatedSessionController extends Controller
         switch($user->role){
             case 3:
                 $request->session()->regenerate();
-                return redirect()->intended('/testing');
+                return redirect('/testing');
+                // return redirect()->intended('/testing');
                 break;
             default:
                 // $request->session()->regenerate();

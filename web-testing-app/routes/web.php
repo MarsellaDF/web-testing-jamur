@@ -21,9 +21,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('testing', function () {
+Route::get('/testing', function () {
     return view('testing.index');
-});
+})->name('testing');
 
 
 Route::post('test-first-click', [FirstClickController::class, 'save'])->name('testFirstClick.post');

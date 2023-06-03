@@ -45,8 +45,22 @@ class RegisteredUserController extends Controller
 
         event(new Registered($user));
 
-        Auth::login($user);
+        // Auth::login($user);
+        // return redirect(RouteServiceProvider::HOME);
 
-        return redirect(RouteServiceProvider::HOME);
+        if ($user) {
+            return redirect('/login')
+                ->with([
+                    'success' => 'Selamat Register Berhasil, Silahkan melanjutkan login untuk akun anda!',
+                ]);
+        } else {
+            return redirect()
+                ->back()
+                ->withInput()
+                ->with([
+                    'error' => 'Register Gagal',
+                ]);
+        }
+
     }
 }
