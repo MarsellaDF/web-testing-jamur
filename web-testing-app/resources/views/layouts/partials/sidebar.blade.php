@@ -45,8 +45,8 @@
                         class="nav-item nav-link {{ Request::segment(1) == 'monitoring' ? 'active' : '' }}"><i
                             class="fa fa-laptop me-2"></i>Monitoring</a>
                     @if (Auth::user()->role != 2)
-                        <a href="/datauser"
-                            class="nav-item nav-link {{ Request::segment(1) == 'datauser' ? 'active' : '' }}"><i
+                        <a href="/data-penguji"
+                            class="nav-item nav-link {{ Request::segment(1) == 'data-penguji' ? 'active' : '' }}"><i
                                 class="fa fa-th me-2"></i>Data User</a>
                     @endif
                 @endif

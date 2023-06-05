@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DatauserController;
 use App\Http\Controllers\MonitoringController;
 use App\Http\Controllers\FirstClickController;
 use Illuminate\Support\Facades\Route;
@@ -35,14 +36,12 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/monitoring', [MonitoringController::class,'index'])->name('monitoring');
     Route::post('/get-first-click', [MonitoringController::class, 'showMonitor'])->name('getmonitor');
+    Route::post('/get--detail-first-click/{id}', [MonitoringController::class, 'showDetailMonitor'])->name('getmonitordetail');
     Route::get('datapakar', function () {
         return view('datapakar');
     });
 
-    Route::get('datauser', function () {
-        return view('datauser');
-    });
-
+    Route::resource('data-penguji', DatauserController::class);
 });
 
 require __DIR__.'/auth.php';

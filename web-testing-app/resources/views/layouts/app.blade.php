@@ -13,6 +13,8 @@
     <!-- Favicon -->
     <link href="img/favicon.ico" rel="icon">
 
+    <link rel="stylesheet" href="/assets/vendors/simple-datatables/style.css">
+
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -101,6 +103,12 @@
 
     <!-- Template Javascript -->
     <script src="{{ asset('') }}assets/js/main.js"></script>
+    <script src="/assets/vendors/simple-datatables/simple-datatables.js"></script>
+<script>
+    // Simple Datatable
+    let table1 = document.querySelector('#table1');
+    let dataTable = new simpleDatatables.DataTable(table1);
+</script>
     @stack('js')
 </body>
 
