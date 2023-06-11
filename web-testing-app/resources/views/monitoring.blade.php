@@ -97,7 +97,7 @@
                         case "tentang":
                             getData(4);
                             iframe.style.width = '1040px';
-                            iframe.style.height = '1586px';
+                            iframe.style.height = '2139px';
                             break;
                         case "kontak":
                             getData(5);

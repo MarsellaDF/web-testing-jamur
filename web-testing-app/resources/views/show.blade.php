@@ -1,8 +1,8 @@
 @php
-    $time1 = strtotime($timeskenario1->isEmpty() ? "00" : $timeskenario1[0]->time_skenario);
-    $time2 = strtotime($timeskenario2->isEmpty() ? "00" :$timeskenario2[0]->time_skenario);
-    $time3 = strtotime($timeskenario3->isEmpty() ? "00" :$timeskenario3[0]->time_skenario);
-    $value = gmdate('H:i:s', $time1+$time2+$time3);
+    $time1 = strtotime($timeskenario1->isEmpty() ? '00' : $timeskenario1[0]->time_skenario);
+    $time2 = strtotime($timeskenario2->isEmpty() ? '00' : $timeskenario2[0]->time_skenario);
+    $time3 = strtotime($timeskenario3->isEmpty() ? '00' : $timeskenario3[0]->time_skenario);
+    $value = gmdate('H:i:s', $time1 + $time2 + $time3);
 @endphp
 <x-app-layout>
     @section('content')
@@ -32,27 +32,32 @@
                                     <hr style="margin: 16px">
                                     <div class="row" style="margin-top:16px">
                                         <h4>Hasil Testing </h4>
-                                        <h6 style="font-weight:normal; margin-top:8px">Total Durasi Testing <label style="font-weight:bold"> : {{$value}}</label></h6>
-                                    <hr style="margin: 16px">
+                                        <h6 style="font-weight:normal; margin-top:8px">Total Durasi Testing <label
+                                                style="font-weight:bold"> : {{ $value }}</label></h6>
+                                        <hr style="margin: 16px">
                                         <ul class="list-group">
                                             <li class="list-group-item d-flex justify-content-between align-items-center"
                                                 id="skenario1">
                                                 1. Lakukan pemesanan produk jamur tiram! <H6 id="timeSkenario1">
-                                                    {{ $timeskenario1->isEmpty() ? "Tidak Terlaksana" : $timeskenario1[0]->time_skenario }}
+                                                    {{ $timeskenario1->isEmpty() ? 'Tidak Terlaksana' : $timeskenario1[0]->time_skenario }}
                                                 </H6>
                                             </li>
                                             <span id="skenario2">
                                                 <li
                                                     class="list-group-item d-flex justify-content-between align-items-center">
                                                     2. Lakukan pencarian alamat (gmaps) Mitra Jamur Bondowoso! <H6
-                                                        id="timeSkenario2">{{ $timeskenario2->isEmpty() ? "Tidak Terlaksana" : $timeskenario2[0]->time_skenario }}</H6>
+                                                        id="timeSkenario2">
+                                                        {{ $timeskenario2->isEmpty() ? 'Tidak Terlaksana' : $timeskenario2[0]->time_skenario }}
+                                                    </H6>
                                                 </li>
                                             </span>
                                             <span id="skenario3">
                                                 <li
                                                     class="list-group-item d-flex justify-content-between align-items-center">
                                                     3. Lakukan kritik dan saran terkait Mitra Jamur Bondowoso! <H6
-                                                        id="timeSkenario3">{{ $timeskenario3->isEmpty() ? "Tidak Terlaksana" :$timeskenario3[0]->time_skenario }}</H6>
+                                                        id="timeSkenario3">
+                                                        {{ $timeskenario3->isEmpty() ? 'Tidak Terlaksana' : $timeskenario3[0]->time_skenario }}
+                                                    </H6>
                                                     <span class="badge badge-primary badge-pill"></span>
                                                 </li>
                                             </span>
@@ -221,7 +226,7 @@
                         case "tentang":
                             getData(4);
                             iframe.style.width = '1040px';
-                            iframe.style.height = '1586px';
+                            iframe.style.height = '2139px';
                             break;
                         case "kontak":
                             getData(5);
@@ -250,28 +255,28 @@
 
                     switch (type) {
                         case "":
-                        getDataFirstClick(1);
+                            getDataFirstClick(1);
                             iframe.style.width = '1073px';
                             iframe.style.height = '4403px';
                             break;
                         case "produk":
-                        getDataFirstClick(2);
+                            getDataFirstClick(2);
                             console.log("change size iframe");
                             iframe.style.width = '1057px';
                             iframe.style.height = '1307px';
                             break;
                         case "gallery":
-                        getDataFirstClick(3);
+                            getDataFirstClick(3);
                             iframe.style.width = '1073px';
                             iframe.style.height = '4403px';
                             break;
                         case "tentang":
-                        getDataFirstClick(4);
+                            getDataFirstClick(4);
                             iframe.style.width = '1040px';
                             iframe.style.height = '1586px';
                             break;
                         case "kontak":
-                        getDataFirstClick(5);
+                            getDataFirstClick(5);
                             iframe.style.width = '1040px';
                             iframe.style.height = '1586px';
                             break;
