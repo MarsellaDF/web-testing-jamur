@@ -13,7 +13,7 @@
     <!-- Favicon -->
     <link href="img/favicon.ico" rel="icon">
 
-    <link rel="stylesheet" href="{{ asset('') }}/assets/vendors/simple-datatables/style.css">
+    <link rel="stylesheet" href="{{ asset('') }}assets/vendors/simple-datatables/style.css">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -103,7 +103,7 @@
 
     <!-- Template Javascript -->
     <script src="{{ asset('') }}assets/js/main.js"></script>
-    <script src="{{ asset('') }}/assets/vendors/simple-datatables/simple-datatables.js"></script>
+    <script src="{{ asset('') }}assets/vendors/simple-datatables/simple-datatables.js"></script>
     <script>
         // Simple Datatable
         let table1 = document.querySelector('#table1');
