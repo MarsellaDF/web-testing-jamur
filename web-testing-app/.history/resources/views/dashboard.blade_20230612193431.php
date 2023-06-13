@@ -1,6 +1,6 @@
 <x-app-layout>
     @section('content')
-        <h4 class="text-center my-4">Halaman Dashboard {{ $data }}</h1>
+        <h4 class="text-center my-4">Halaman Dashboard</h1>
 
        <!-- Sale & Revenue Start -->
        <div class="container-fluid pt-4 px-4">

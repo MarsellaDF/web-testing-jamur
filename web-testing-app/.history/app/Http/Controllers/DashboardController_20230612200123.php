@@ -1,0 +1,47 @@
+<?php
+
+namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
+
+class DashboardController extends Controller
+{
+    public function index(Request $request)
+    {
+        $user = \App\Models\User::find(Auth::user()->id);
+
+        $user->ip = $request->ip();
+        $user->update();
+
+        // $data["countClickDashboard"] = 
+        //         DB::table("first_click")->select('id_user', 'id_menu', DB::raw('count(*) as total'))
+        //         ->groupBy('id_user', 'id_menu')
+        //         ->get(); 
+
+        $data["countClickMenu"] = 
+                DB::table("first_click")->select('id_menu', DB::raw('count(*) as total'))
+                ->groupBy('id_menu')
+                ->get(); 
+
+        $data["countTimeMenu"] = DB::table('first_click')
+                ->select('id_user', 'time_skenario')
+                ->whereIn('id', function ($query) {
+                    $query->select(DB::raw('MAX(id)'))
+                        ->from('first_click')
+                        ->groupBy('id_user');
+                })
+                ->get();
+
+        // $data["countTimeMenu"] = DB::table('first_click')
+        //         ->select('id_menu', 'id_user', DB::raw('SEC_TO_TIME(SUM(TIME_TO_SEC(time_skenario))) as total_time'))
+        //         ->groupBy('id_menu', 'id_user')
+        //         ->get();
+
+        $data["data"] = "Anam";
+
+        return $data;
+
+        return view('dashboard', $data);
+    }
+}
