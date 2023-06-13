@@ -94,7 +94,13 @@ class DashboardController extends Controller
                 $idMenuTerbesar = $datas->id_menu;
             }
         }
-        
+        foreach ($data["countClickPage"] as $datas) {
+            if ($datas->total < $nilaiTerbesar) {
+                $nilaiTerbesar = $datas->total;
+                $idMenuTerbesar = $datas->id_menu;
+            }
+        }
+
         $dataValue = "";
         switch ($idMenuTerbesar) {
             case 1:

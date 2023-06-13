@@ -80,52 +80,30 @@ class DashboardController extends Controller
             }
         }
         $data["menuMinDurations"] = $minKey;
-        $data["userCounts"] = DB::table('users')
-                ->where('role', 3)
-                ->count();
 
 
         $nilaiTerbesar = 0;
-        $idMenuTerbesar = "";
+        $idMenuTerbesar = null;
 
-        foreach ($data["countClickPage"] as $datas) {
-            if ($datas->total > $nilaiTerbesar) {
-                $nilaiTerbesar = $datas->total;
-                $idMenuTerbesar = $datas->id_menu;
+        foreach ($countClickPage as $data) {
+            if ($data['total'] > $nilaiTerbesar) {
+                $nilaiTerbesar = $data['total'];
+                $idMenuTerbesar = $data['id_menu'];
             }
         }
-        
-        $dataValue = "";
-        switch ($idMenuTerbesar) {
-            case 1:
-                $dataValue = "Dashboard";
-                break;
-            case 2:
-                $dataValue = "Produk";
-                break;
-            case 3:
-                $dataValue = "Galeri";
-                break;
-            case 4:
-                $dataValue = "Kontak";
-                break;
-            case 5:
-                $dataValue = "Tentang";
-                break;
-            default:
-                // Code to execute if none of the cases match
-                break;
-        }
 
-        $data['idMenuTerbesar'] = $dataValue;
+        $data["idMenuTerbesar"] = $idMenuTerbesar;
 
+        $data["userCounts"] = DB::table('users')
+                ->where('role', 3)
+                ->count();
         // $data["result"] = DB::table('first_click')
         //         ->select('id_menu', DB::raw('SUM(duration) as total_duration'), DB::raw('COUNT(*) as count'))
         //         ->groupBy('id_menu')
         //         ->get();
     
 
-        // return $data;
+        return $data;
 
         return view('dashboard', $data);
     }

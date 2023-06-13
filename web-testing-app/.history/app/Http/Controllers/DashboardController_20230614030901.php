@@ -94,7 +94,6 @@ class DashboardController extends Controller
                 $idMenuTerbesar = $datas->id_menu;
             }
         }
-        
         $dataValue = "";
         switch ($idMenuTerbesar) {
             case 1:
@@ -125,7 +124,7 @@ class DashboardController extends Controller
         //         ->get();
     
 
-        // return $data;
+        return $data;
 
         return view('dashboard', $data);
     }

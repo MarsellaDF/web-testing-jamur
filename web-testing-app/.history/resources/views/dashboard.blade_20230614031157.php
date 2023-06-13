@@ -51,7 +51,7 @@
         <h4 class="text-center my-4">Halaman Dashboard</h1>
 
        <!-- Sale & Revenue Start -->
-       <div class="container-fluid pt-4 px-4" style="height: 400px">
+       <div class="container-fluid pt-4 px-4" style="height: 200px">
                 <div class="row g-4">
                     <div class="col-sm-6 col-xl-3">
                         <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">

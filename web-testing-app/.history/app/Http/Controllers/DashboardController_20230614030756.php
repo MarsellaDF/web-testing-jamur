@@ -80,21 +80,17 @@ class DashboardController extends Controller
             }
         }
         $data["menuMinDurations"] = $minKey;
-        $data["userCounts"] = DB::table('users')
-                ->where('role', 3)
-                ->count();
 
 
         $nilaiTerbesar = 0;
         $idMenuTerbesar = "";
 
-        foreach ($data["countClickPage"] as $datas) {
-            if ($datas->total > $nilaiTerbesar) {
-                $nilaiTerbesar = $datas->total;
-                $idMenuTerbesar = $datas->id_menu;
+        foreach ($data["countClickPage"] as $data) {
+            if ($data->total > $nilaiTerbesar) {
+                $nilaiTerbesar = $data->total;
+                $idMenuTerbesar = $data->id_menu;
             }
         }
-        
         $dataValue = "";
         switch ($idMenuTerbesar) {
             case 1:
@@ -117,7 +113,10 @@ class DashboardController extends Controller
                 break;
         }
 
-        $data['idMenuTerbesar'] = $dataValue;
+        $data["userCounts"] = DB::table('users')
+                ->where('role', 3)
+                ->count();
+        $data->idMenuTerbesar = $nilaiTerbesar;
 
         // $data["result"] = DB::table('first_click')
         //         ->select('id_menu', DB::raw('SUM(duration) as total_duration'), DB::raw('COUNT(*) as count'))
@@ -125,7 +124,7 @@ class DashboardController extends Controller
         //         ->get();
     
 
-        // return $data;
+        return $data;
 
         return view('dashboard', $data);
     }

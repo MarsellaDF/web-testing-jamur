@@ -58,7 +58,7 @@ class DashboardController extends Controller
 
         foreach ($data["countTimePage"] as $menu) {
             $idMenu = $menu->id_menu;
-            $minDuration = $menu->max_duration;
+            $minDuration = $menu->min_duration;
 
             if (!isset($menuMinDurations[$idMenu]) || $minDuration < $menuMinDurations[$idMenu]) {
                 $menuMinDurations[$idMenu] = $minDuration;
@@ -71,61 +71,25 @@ class DashboardController extends Controller
         $minKey = null;
 
         foreach ($range as $key) {
-            if (isset($menuMinDurations[$key])) {
-                $value = $menuMinDurations[$key];
+            if (isset($menuMaxDurations[$key])) {
+                $value = $menuMaxDurations[$key];
                 if ($minValue === null || $value < $minValue) {
                     $minValue = $value;
                     $minKey = $key;
                 }
             }
         }
-        $data["menuMinDurations"] = $minKey;
+
         $data["userCounts"] = DB::table('users')
                 ->where('role', 3)
                 ->count();
-
-
-        $nilaiTerbesar = 0;
-        $idMenuTerbesar = "";
-
-        foreach ($data["countClickPage"] as $datas) {
-            if ($datas->total > $nilaiTerbesar) {
-                $nilaiTerbesar = $datas->total;
-                $idMenuTerbesar = $datas->id_menu;
-            }
-        }
-        
-        $dataValue = "";
-        switch ($idMenuTerbesar) {
-            case 1:
-                $dataValue = "Dashboard";
-                break;
-            case 2:
-                $dataValue = "Produk";
-                break;
-            case 3:
-                $dataValue = "Galeri";
-                break;
-            case 4:
-                $dataValue = "Kontak";
-                break;
-            case 5:
-                $dataValue = "Tentang";
-                break;
-            default:
-                // Code to execute if none of the cases match
-                break;
-        }
-
-        $data['idMenuTerbesar'] = $dataValue;
-
         // $data["result"] = DB::table('first_click')
         //         ->select('id_menu', DB::raw('SUM(duration) as total_duration'), DB::raw('COUNT(*) as count'))
         //         ->groupBy('id_menu')
         //         ->get();
     
 
-        // return $data;
+        return $data;
 
         return view('dashboard', $data);
     }
